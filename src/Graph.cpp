@@ -7,6 +7,25 @@ void Graph::addLocation(const std::string& city)
 
 void Graph::addRoad(const std::string& city, const std::string& destination, int distance)
 {
+    if (distance < 0)
+    {
+        std::cout << "Distance cannot be negative!\n";
+        return;
+    }
+    if (city == destination)
+    {
+        std::cout << "A location cannot have a road to itself!\n";
+        return;
+    }
+    for (const auto& road : adjacencyList[city])
+    {
+        if (road.first == destination)
+        {
+            std::cout << "Road already exists!\n";
+            return;
+        }
+    }
+    
     adjacencyList[city].push_back({destination, distance});
     adjacencyList[destination].push_back({city, distance});
 }
