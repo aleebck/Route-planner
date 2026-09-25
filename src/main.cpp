@@ -97,6 +97,8 @@ int main()
 
     } while (choice != 5);
 
+    graph.saveToFile("data/roads.txt");
+
 
     return 0;
 }

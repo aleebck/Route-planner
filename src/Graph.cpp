@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include <fstream>
 
 void Graph::addLocation(const std::string& city)
 {
@@ -25,7 +26,7 @@ void Graph::addRoad(const std::string& city, const std::string& destination, int
             return;
         }
     }
-    
+
     adjacencyList[city].push_back({destination, distance});
     adjacencyList[destination].push_back({city, distance});
 }
@@ -131,4 +132,26 @@ void Graph::findShortestRoute(const std::string& start, const std::string& desti
         }
     }
     std::cout << "\nTotal distance: " << distances[destination] << '\n';
+}
+
+void Graph::saveToFile(const std::string& filename) const
+{
+    std::ofstream file(filename);
+
+    if(!file)
+    {
+        std::cout << "Error opening file!\n";
+        return;
+    }
+
+    for(const auto& entry: adjacencyList)
+    {
+        for(const auto& road: entry.second)
+        {
+            if(entry.first < road.first)
+                file << entry.first << "|" << road.first << "|" << road.second << "\n";
+        }
+    }
+
+    file.close();
 }

@@ -20,6 +20,7 @@ class Graph{
         void addRoad(const std::string& city, const std::string& destination, int distance);
         void displayGraph() const;
         void findShortestRoute(const std::string& start, const std::string& destination);
+        void saveToFile(const std::string& filename) const;
 };
 
 #endif
