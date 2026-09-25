@@ -4,12 +4,16 @@ int main()
 {
     Graph graph;
 
-    graph.adLocation("Austin");
+    graph.addLocation("Austin");
+    graph.addLocation("San Marcos");
+    graph.addLocation("Houston");
+
     graph.addRoad("Austin", "San Marcos", 32);
-    graph.adLocation("Houston");
     graph.addRoad("Houston", "Austin", 150);
 
     graph.displayGraph();
+
+    graph.findShortestRoute("Houston", "San Marcos");
 
 
     return 0;

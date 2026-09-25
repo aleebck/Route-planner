@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-void Graph::adLocation(const std::string& city)
+void Graph::addLocation(const std::string& city)
 {
     adjacencyList[city];
 }
@@ -18,9 +18,98 @@ void Graph::displayGraph() const
         std::cout << entry.first<< ": ";
         for(const auto& dests: entry.second)
         {
-            std::cout<<"(" <<dests.first << ", " << dests.second << "miles) ";
+            std::cout<<"(" <<dests.first << ", " << dests.second << " miles) ";
         }
 
         std::cout<<'\n';
     }
+}
+
+void Graph::findShortestRoute(const std::string& start, const std::string& destination)
+{
+    if (adjacencyList.find(start) == adjacencyList.end())
+    {
+        std::cout << "Starting location not found!\n";
+        return;
+    }
+    if(adjacencyList.find(destination) == adjacencyList.end())
+    {
+        std::cout << "Destination not found!\n";
+        return;
+    }
+
+    std::unordered_map<std::string, int> distances;
+    std::unordered_map<std::string, std::string> previous;
+
+    for(const auto& entry: adjacencyList)
+    {
+        distances[entry.first] = std::numeric_limits<int>::max();
+    }
+    distances[start] = 0;
+
+    std::priority_queue<
+        std::pair<int, std::string>,
+        std::vector<std::pair<int, std::string>>,
+        std::greater<std::pair<int, std::string>> 
+        >pq;
+
+    pq.push({distances[start], start});
+
+    while(!pq.empty())
+    {
+        int currentDistance = pq.top().first;
+        std::string currentCity = pq.top().second;
+
+        pq.pop();
+
+        if(currentDistance > distances[currentCity])
+        {
+            continue;
+        }
+
+        for(const auto& road: adjacencyList[currentCity])
+        {
+            std::string nextCity = road.first;
+            int roadDistance = road.second;
+
+            int newDistance = currentDistance + roadDistance;
+
+            if(newDistance < distances[nextCity])
+            {
+                distances[nextCity] = newDistance;
+                previous[nextCity] = currentCity;
+                pq.push({newDistance, nextCity});
+            }
+        }
+    }
+
+    if(distances[destination] == std::numeric_limits<int>::max())
+    {
+        std::cout << "No route found!\n";
+        return;
+    }
+
+    std::vector<std::string> path;
+    std::string current = destination;
+
+    while(current != start)
+    {
+        path.push_back(current);
+        current = previous[current];
+    }
+    path.push_back(current);
+
+    std::reverse(path.begin(), path.end());
+
+    std::cout << "Shortest route: ";
+    for (int i = 0; i < path.size(); i++)
+    {
+        std::cout << path[i];
+
+        if (i < path.size() - 1)
+        {
+            std::cout << " -> ";
+        }
+    }
+    std::cout << "\nTotal distance: " << distances[destination] << '\n';
 }

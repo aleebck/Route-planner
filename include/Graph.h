@@ -7,15 +7,19 @@
 #include <vector>
 #include <iostream>
 #include <limits>
+#include <queue>
+#include <functional>
+#include <algorithm>
 
 class Graph{
     private:
         std::unordered_map<std::string,
             std::vector<std::pair<std::string, int>>> adjacencyList;
     public:
-        void adLocation(const std::string& city);
+        void addLocation(const std::string& city);
         void addRoad(const std::string& city, const std::string& destination, int distance);
         void displayGraph() const;
+        void findShortestRoute(const std::string& start, const std::string& destination);
 };
 
 #endif
