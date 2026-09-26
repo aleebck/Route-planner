@@ -132,7 +132,7 @@ void Graph::findShortestRoute(const std::string& start, const std::string& desti
             std::cout << " -> ";
         }
     }
-    std::cout << "\nTotal distance: " << distances[destination] << '\n';
+    std::cout << "\nTotal distance: " << distances[destination] << " miles"<<'\n';
 }
 
 void Graph::saveToFile(const std::string& filename) const

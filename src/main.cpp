@@ -74,14 +74,21 @@ int main()
                 int distance;
 
                 std::cout<< "Enter starting location: ";
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                 getline(std::cin, city);
 
                 std::cout<<"Enter destination: ";
                 getline(std::cin, destination);
 
                 std::cout << "Enter distance: ";
-                std::cin >> distance;
+                if (!(std::cin >> distance))
+                {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+
+                    std::cout << "Invalid distance! Please enter a number.\n";
+                    break;
+                }
 
                 graph.addRoad(city, destination, distance);
 
