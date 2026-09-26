@@ -4,12 +4,7 @@ int main()
 {
     Graph graph;
 
-    graph.addLocation("Austin");
-    graph.addLocation("San Marcos");
-    graph.addLocation("Houston");
-
-    graph.addRoad("Austin", "San Marcos", 32);
-    graph.addRoad("Houston", "Austin", 150);
+    graph.loadFromFile("data/roads.txt");
 
     int choice;
 
@@ -97,7 +92,7 @@ int main()
 
     } while (choice != 5);
 
-    graph.saveToFile("data/roads.txt");
+    //graph.saveToFile("data/roads.txt");
 
 
     return 0;

@@ -1,2 +1,3 @@
 Austin|San Marcos|32
 Austin|Houston|150
+Dallas|Waco|67

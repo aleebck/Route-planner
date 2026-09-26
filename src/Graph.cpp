@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include <fstream>
+#include <sstream>
 
 void Graph::addLocation(const std::string& city)
 {
@@ -154,4 +155,30 @@ void Graph::saveToFile(const std::string& filename) const
     }
 
     file.close();
+}
+
+void Graph::loadFromFile(const std::string& filename)
+{
+    std::ifstream file(filename);
+
+    if(!file)
+    {
+        std::cout << "Error opening file!\n";
+        return;
+    }
+
+    std::string city, destination, distanceText;
+    int distance;
+    std::string line;
+    while(std::getline(file, line))
+    {
+        std::stringstream ss(line);
+
+        std::getline(ss, city, '|');
+        std::getline(ss, destination, '|');
+        std::getline(ss, distanceText);
+        distance = std::stoi(distanceText);
+
+        addRoad(city, destination, distance);
+    }
 }
