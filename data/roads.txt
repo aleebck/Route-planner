@@ -3,3 +3,4 @@ Austin|Houston|150
 Austin|Dallas|195
 Austin|Fort Worth|190
 Dallas|Waco|67
+El Paso

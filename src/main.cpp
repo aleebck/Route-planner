@@ -1,4 +1,6 @@
 #include "Graph.h"
+
+#include <iostream>
 #include <limits>
 
 int main()
@@ -75,10 +77,10 @@ int main()
 
                 std::cout<< "Enter starting location: ";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-                getline(std::cin, city);
+                std::getline(std::cin, city);
 
                 std::cout<<"Enter destination: ";
-                getline(std::cin, destination);
+                std::getline(std::cin, destination);
 
                 std::cout << "Enter distance: ";
                 if (!(std::cin >> distance))
@@ -99,7 +101,7 @@ int main()
             {
                 graph.saveToFile("data/roads.txt");
                 std::cout << "Map saved!\n";
-                std::cout << "GoodBye!\n";
+                std::cout << "Goodbye!\n";
                 break;
             }
 

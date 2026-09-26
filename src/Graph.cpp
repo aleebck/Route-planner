@@ -1,17 +1,29 @@
 #include "Graph.h"
+
+#include <algorithm>
 #include <fstream>
+#include <functional>
+#include <iostream>
+#include <limits>
+#include <queue>
 #include <sstream>
 
 void Graph::addLocation(const std::string& city)
 {
+    if(city.empty())
+    {
+        std::cout << "Location cannot be empty!\n";
+        return;
+    }
+
     adjacencyList[city];
 }
 
 void Graph::addRoad(const std::string& city, const std::string& destination, int distance)
 {
-    if (distance < 0)
+    if (distance <= 0)
     {
-        std::cout << "Distance cannot be negative!\n";
+        std::cout << "Distance must be greater than zero!\n";
         return;
     }
     if (city == destination)
@@ -123,7 +135,7 @@ void Graph::findShortestRoute(const std::string& start, const std::string& desti
     std::reverse(path.begin(), path.end());
 
     std::cout << "Shortest route: ";
-    for (int i = 0; i < path.size(); i++)
+    for (std::size_t i = 0; i < path.size(); i++)
     {
         std::cout << path[i];
 
@@ -152,7 +164,7 @@ void Graph::saveToFile(const std::string& filename) const
             file << entry.first << '\n';
             continue;
         }
-        
+
         for(const auto& road: entry.second)
         {
             if(entry.first < road.first)
@@ -178,6 +190,11 @@ void Graph::loadFromFile(const std::string& filename)
     std::string line;
     while(std::getline(file, line))
     {
+        if(line.empty())
+        {
+            continue;
+        }
+
         if(line.find('|') == std::string::npos)
         {
             addLocation(line);
@@ -189,8 +206,18 @@ void Graph::loadFromFile(const std::string& filename)
         std::getline(ss, city, '|');
         std::getline(ss, destination, '|');
         std::getline(ss, distanceText);
-        distance = std::stoi(distanceText);
-
-        addRoad(city, destination, distance);
+        try
+        {
+            distance = std::stoi(distanceText);
+            addRoad(city, destination, distance);
+        }
+        catch (const std::invalid_argument&)
+        {
+            std::cout << "Invalid distance in file: " << line << '\n';
+        }
+        catch (const std::out_of_range&)
+        {
+            std::cout << "Distance is too large in file: " << line << '\n';
+        }
     }
 }
