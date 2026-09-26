@@ -82,6 +82,8 @@ int main()
 
             case 5:
             {
+                graph.saveToFile("data/roads.txt");
+                std::cout << "Map saved!\n";
                 std::cout << "GoodBye!\n";
                 break;
             }
@@ -91,8 +93,6 @@ int main()
         }
 
     } while (choice != 5);
-
-    //graph.saveToFile("data/roads.txt");
 
 
     return 0;
