@@ -147,6 +147,12 @@ void Graph::saveToFile(const std::string& filename) const
 
     for(const auto& entry: adjacencyList)
     {
+        if(entry.second.empty())
+        {
+            file << entry.first << '\n';
+            continue;
+        }
+        
         for(const auto& road: entry.second)
         {
             if(entry.first < road.first)
@@ -172,6 +178,12 @@ void Graph::loadFromFile(const std::string& filename)
     std::string line;
     while(std::getline(file, line))
     {
+        if(line.find('|') == std::string::npos)
+        {
+            addLocation(line);
+            continue;
+        }
+
         std::stringstream ss(line);
 
         std::getline(ss, city, '|');
