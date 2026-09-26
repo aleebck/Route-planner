@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include <limits>
 
 int main()
 {
@@ -18,7 +19,14 @@ int main()
         std::cout << "5. Exit\n";
         std::cout << "Enter choice: ";
 
-        std::cin >> choice;
+        if (!(std::cin >> choice))
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            std::cout << "Invalid input. Please enter a number from 1-5.\n";
+            continue;
+        }
 
         switch (choice)
         {
