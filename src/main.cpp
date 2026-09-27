@@ -6,7 +6,6 @@
 int main()
 {
     Graph graph;
-
     graph.loadFromFile("data/roads.txt");
 
     int choice;
