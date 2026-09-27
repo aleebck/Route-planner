@@ -24,6 +24,7 @@ class Graph{
         RouteResult  findShortestRoute(const std::string& start, const std::string& destination);
         void saveToFile(const std::string& filename) const;
         void loadFromFile(const std::string& filename);
+        std::vector<std::string> getLocations() const;
 };
 
 #endif

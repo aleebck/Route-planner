@@ -45,6 +45,24 @@ int main()
         response.set_content(json, "application/json");
     });
 
+    server.Get("/locations", [&graph](const httplib::Request& request, httplib::Response& response)
+    {
+        std::string json = "[";
+        std::vector<std::string> locations = graph.getLocations();
+        for(std::size_t i = 0; i< locations.size(); i++)
+        {
+            json += "\""+locations[i] + "\"";
+
+            if(i < locations.size()-1)
+            {
+                json +=", ";
+            }
+        }
+        json+="]";
+
+        response.set_content(json, "application/json");
+    });
+
     std::cout <<"Server running at http://localhost:8080\n";
     server.listen("localhost", 8080);
 

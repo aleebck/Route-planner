@@ -219,3 +219,15 @@ void Graph::loadFromFile(const std::string& filename)
         }
     }
 }
+
+std::vector<std::string> Graph::getLocations() const
+{
+    std::vector<std::string> locations;
+
+    for(const auto& entry: adjacencyList)
+    {
+        locations.push_back(entry.first);
+    }
+
+    return locations;
+}
