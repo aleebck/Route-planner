@@ -60,6 +60,7 @@ int main()
         }
         json+="]";
 
+        response.set_header("Access-Control-Allow-Origin", "*");
         response.set_content(json, "application/json");
     });
 
