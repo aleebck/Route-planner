@@ -228,6 +228,8 @@ std::vector<std::string> Graph::getLocations() const
     {
         locations.push_back(entry.first);
     }
+    
+    std::sort(locations.begin(), locations.end());
 
     return locations;
 }
