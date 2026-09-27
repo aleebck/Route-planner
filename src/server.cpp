@@ -42,6 +42,7 @@ int main()
         }
         json += "], \"distance\":" + std::to_string(result.distance) + "}";
 
+        response.set_header("Access-Control-Allow-Origin", "*");
         response.set_content(json, "application/json");
     });
 

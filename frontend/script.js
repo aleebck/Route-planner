@@ -24,7 +24,10 @@ findRouteButton.addEventListener('click', function() {
     const start = fromCity.value;
     const destination = toCity.value;
 
-    console.log(start);
-    console.log(destination);
+    fetch(`http://localhost:8080/route?start=${encodeURIComponent(start)}&destination=${encodeURIComponent(destination)}`)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+        });
 });
 
