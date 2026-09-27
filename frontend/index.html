@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Route Finder</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>TEXAS ROUTE PLANNER</h1>
+            <h5>FIND THE SHORTEST ROUTE BETWEEN TEXAS CITIES</h5>
+        </header>
+
+        <main class="main-container">
+            <div class="left-section">
+                <div class="location-input">
+                    <label for="from-city">From</label>
+
+                    <select id="from-city">
+                        <option value="">Select a city</option>
+                    </select>
+                </div>
+                <div class="location-input">
+                    <label for="to-city">To</label>
+
+                    <select id="to-city">
+                        <option value="">Select a city</option>
+                    </select>
+                </div>
+
+                <button class="find-route-button">Find Route</button>
+
+                <div class="route-result">
+                    <div class="route-found">
+
+                    </div>
+                    <div class="all-roads">
+
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <div id="map"></div>
+            </div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
