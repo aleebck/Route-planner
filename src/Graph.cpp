@@ -58,17 +58,20 @@ void Graph::displayGraph() const
     }
 }
 
-void Graph::findShortestRoute(const std::string& start, const std::string& destination)
+
+
+
+RouteResult Graph::findShortestRoute(const std::string& start, const std::string& destination)
 {
+    RouteResult result;
+    result.distance = -1;
     if (adjacencyList.find(start) == adjacencyList.end())
     {
-        std::cout << "Starting location not found!\n";
-        return;
+        return result;
     }
     if(adjacencyList.find(destination) == adjacencyList.end())
     {
-        std::cout << "Destination not found!\n";
-        return;
+        return result;
     }
 
     std::unordered_map<std::string, int> distances;
@@ -118,8 +121,7 @@ void Graph::findShortestRoute(const std::string& start, const std::string& desti
 
     if(distances[destination] == std::numeric_limits<int>::max())
     {
-        std::cout << "No route found!\n";
-        return;
+        return result;
     }
 
     std::vector<std::string> path;
@@ -134,18 +136,14 @@ void Graph::findShortestRoute(const std::string& start, const std::string& desti
 
     std::reverse(path.begin(), path.end());
 
-    std::cout << "Shortest route: ";
-    for (std::size_t i = 0; i < path.size(); i++)
-    {
-        std::cout << path[i];
+    result.path = path;
+    result.distance = distances[destination];
 
-        if (i < path.size() - 1)
-        {
-            std::cout << " -> ";
-        }
-    }
-    std::cout << "\nTotal distance: " << distances[destination] << " miles"<<'\n';
+    return result;
 }
+
+
+
 
 void Graph::saveToFile(const std::string& filename) const
 {

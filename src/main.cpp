@@ -51,7 +51,30 @@ int main()
                 std::cout << "Enter destination: ";
                 std::getline(std::cin, destination);
 
-                graph.findShortestRoute(start, destination);
+                RouteResult result = graph.findShortestRoute(start, destination);
+
+                if (result.distance == -1)
+                {
+                    std::cout << "No route found!\n";
+                    break;
+                }
+
+                std::cout << "Shortest route: ";
+
+                bool first = true;
+
+                for (const auto& city : result.path)
+                {
+                    if (!first)
+                    {
+                        std::cout << " -> ";
+                    }
+
+                    std::cout << city;
+                    first = false;
+                }
+
+                std::cout << "\nTotal distance: " << result.distance << " miles\n";
 
                 break;
             }
