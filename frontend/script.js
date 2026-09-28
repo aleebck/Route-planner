@@ -37,6 +37,13 @@ findRouteButton.addEventListener('click', function() {
         .then(result => {
             routeFound.textContent = `Total Distance: ${result.distance} miles`;
             allRoads.textContent = result.path.join(' → ');
+
+            const routeCoordinates = result.path.map(city => {
+                return cityCoordinates[city];
+            });
+
+            console.log(result.path);
+            console.log(routeCoordinates);
         });
 });
 
