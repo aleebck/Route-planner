@@ -1,5 +1,18 @@
 const fromCity = document.querySelector('#from-city');
 const toCity = document.querySelector('#to-city');
+const findRouteButton = document.querySelector('.find-route-button');
+const routeFound = document.querySelector('.route-found');
+const allRoads = document.querySelector('.all-roads');
+
+const map = L.map('map').setView([31.0, -99.0], 6);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const austinMarker = L.marker([30.2672, -97.7431]);
+austinMarker.addTo(map);
+austinMarker.bindPopup('Austin');
+
 
 fetch('http://localhost:8080/locations')
     .then(response=> response.json())
@@ -18,7 +31,6 @@ fetch('http://localhost:8080/locations')
         });
     });
 
-const findRouteButton = document.querySelector('.find-route-button');
 
 findRouteButton.addEventListener('click', function() {
     const start = fromCity.value;
@@ -27,7 +39,8 @@ findRouteButton.addEventListener('click', function() {
     fetch(`http://localhost:8080/route?start=${encodeURIComponent(start)}&destination=${encodeURIComponent(destination)}`)
         .then(response => response.json())
         .then(result => {
-            console.log(result);
+            routeFound.textContent = `Total Distance: ${result.distance} miles`;
+            allRoads.textContent = result.path.join(' → ');
         });
 });
 
