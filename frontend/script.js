@@ -9,10 +9,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const austinMarker = L.marker([30.2672, -97.7431]);
-austinMarker.addTo(map);
-austinMarker.bindPopup('Austin');
-
 
 fetch('http://localhost:8080/locations')
     .then(response=> response.json())
