@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Route Finder</title>
+
         <link rel="stylesheet" href="style.css">
         <link
             rel="stylesheet"
@@ -9,31 +13,42 @@
         />
     </head>
     <body>
-        <header>
-            <h1>TEXAS ROUTE PLANNER</h1>
-            <h5>FIND THE SHORTEST ROUTE BETWEEN TEXAS CITIES</h5>
-        </header>
 
         <main class="main-container">
-            <div class="left-section">
-                <div class="location-input">
-                    <label for="from-city">From</label>
 
-                    <select id="from-city">
-                        <option value="">Select a city</option>
-                    </select>
+            <section class="left-section">
+
+                <header>
+                    <h1>TEXAS ROUTE PLANNER</h1>
+                    <h5>FIND THE SHORTEST ROUTE BETWEEN TEXAS CITIES</h5>
+                </header>
+                <div class="planner">
+
+                    <div class="location-input">
+                        <label for="from-city">From</label>
+
+                        <select id="from-city">
+                            <option value="">Select a city</option>
+                        </select>
+                    </div>
+
+                    <div class="location-input">
+                        <label for="to-city">To</label>
+
+                        <select id="to-city">
+                            <option value="">Select a city</option>
+                        </select>
+                    </div>
+
+                    <button class="find-route-button">
+                        Find Route
+                    </button>
+
                 </div>
-                <div class="location-input">
-                    <label for="to-city">To</label>
-
-                    <select id="to-city">
-                        <option value="">Select a city</option>
-                    </select>
-                </div>
-
-                <button class="find-route-button">Find Route</button>
 
                 <div class="route-result">
+                    <h3>Route Details</h3>
+
                     <div class="route-found">
 
                     </div>
@@ -41,13 +56,18 @@
 
                     </div>
                 </div>
-            </div>
-            <div class="right-section">
+
+            </section>
+
+            <section class="right-section">
                 <div id="map"></div>
-            </div>
+            </section>
         </main>
+
+
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="data.js"></script>
         <script src="script.js"></script>
+        
     </body>
 </html>
