@@ -1,50 +1,85 @@
 El Paso|Van Horn|120
 Van Horn|Fort Stockton|120
 Fort Stockton|Midland|100
+Fort Stockton|San Angelo|200
+
 Midland|Odessa|20
 Midland|San Angelo|110
 Midland|Lubbock|120
+Odessa|Lubbock|145
+
 Lubbock|Amarillo|125
 Lubbock|Abilene|150
 Amarillo|Wichita Falls|225
+
 San Angelo|Abilene|90
 San Angelo|Junction|100
+San Angelo|Austin|205
+
 Abilene|Fort Worth|150
 Abilene|Waco|185
+Abilene|Wichita Falls|140
+
 Wichita Falls|Fort Worth|115
+Wichita Falls|Sherman|140
+
 Fort Worth|Dallas|35
 Fort Worth|Waco|90
+Fort Worth|Denton|40
+
+Denton|Dallas|40
+Denton|Sherman|45
+
 Dallas|Waco|95
 Dallas|Tyler|100
 Dallas|Sherman|65
-Sherman|Wichita Falls|140
+
+Sherman|Tyler|120
+
 Tyler|Longview|40
 Tyler|College Station|180
 Longview|Beaumont|180
+
 Waco|Temple|35
 Waco|College Station|90
+
 Temple|Killeen|30
 Temple|Austin|70
 Killeen|Austin|70
+
 Junction|Fredericksburg|60
+Junction|San Antonio|115
+
 Fredericksburg|Austin|80
 Fredericksburg|San Antonio|70
+
 Austin|San Marcos|32
 Austin|College Station|110
 Austin|Houston|165
+Austin|San Antonio|80
+
 San Marcos|San Antonio|50
 San Marcos|Victoria|110
+
 San Antonio|Laredo|155
 San Antonio|Corpus Christi|145
 San Antonio|Victoria|115
+
 College Station|Houston|95
 College Station|Tyler|180
+
 Houston|Beaumont|85
 Houston|Galveston|50
 Houston|Victoria|125
+
 Beaumont|Galveston|115
+
 Victoria|Corpus Christi|85
+Victoria|Galveston|130
+
 Corpus Christi|Laredo|145
 Corpus Christi|McAllen|150
+
 Laredo|McAllen|145
+
 McAllen|Brownsville|60
