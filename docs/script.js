@@ -16,6 +16,14 @@ L.tileLayer(
     }
 ).addTo(map);
 
+L.tileLayer(
+    'https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+    {
+        maxZoom: 19,
+        attribution: 'Labels &copy; Esri'
+    }
+).addTo(map);
+
 fetch('https://route-planner-i48u.onrender.com/locations')
     .then(response=> response.json())
     .then(locations=> {
