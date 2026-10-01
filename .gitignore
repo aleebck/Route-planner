@@ -1,0 +1,6 @@
+# Compiled executables
+routeplanner
+server
+
+# macOS
+.DS_Store
