@@ -1,3 +1,5 @@
+all: routeplanner server
+
 CXX = g++
 CXXFLAGS = -std=c++17 -Iinclude -Ithird_party
 
