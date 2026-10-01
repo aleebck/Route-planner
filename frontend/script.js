@@ -8,10 +8,14 @@ let routeLine;
 let routeMarkers = [];
 
 const map = L.map('map').setView([31.0, -99.0], 6);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-
+L.tileLayer(
+    'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg',
+    {
+        maxZoom: 20,
+        attribution:
+            '&copy; Stadia Maps &copy; OpenMapTiles &copy; OpenStreetMap contributors'
+    }
+).addTo(map);
 
 fetch('http://localhost:8080/locations')
     .then(response=> response.json())
@@ -35,6 +39,12 @@ findRouteButton.addEventListener('click', function() {
     const start = fromCity.value;
     const destination = toCity.value;
 
+    if (start === '' || destination === '') {
+        routeFound.textContent = 'Please select both cities.';
+        allRoads.textContent = '';
+        return;
+    }
+
     if (start === destination) {
         routeFound.textContent = 'Please select two different cities.';
         allRoads.textContent = '';
@@ -44,15 +54,43 @@ findRouteButton.addEventListener('click', function() {
     fetch(`http://localhost:8080/route?start=${encodeURIComponent(start)}&destination=${encodeURIComponent(destination)}`)
         .then(response => response.json())
         .then(result => {
+            if (!result.path || result.path.length === 0) {
+                routeFound.textContent = 'No route found between these cities.';
+                allRoads.innerHTML = '';
+
+                if (routeLine) {
+                    map.removeLayer(routeLine);
+                    routeLine = null;
+                }
+
+                routeMarkers.forEach(marker => {
+                    map.removeLayer(marker);
+                });
+
+                routeMarkers = [];
+
+                return;
+            }
+
             routeFound.textContent = `Total Distance: ${result.distance} miles`;
-            allRoads.textContent = result.path.join(' → ');
+            allRoads.innerHTML = '';
+            allRoads.style.display = 'block';
+
+            result.path.forEach((city, index) => {
+                const cityItem = document.createElement('div');
+                cityItem.classList.add('route-city');
+
+                cityItem.innerHTML = `
+                    <div class="route-number">${index + 1}</div>
+                    <div class="route-city-name">${city}</div>
+                `;
+
+                allRoads.appendChild(cityItem);
+            });
 
             const routeCoordinates = result.path.map(city => {
                 return cityCoordinates[city];
             });
-
-            console.log(result.path);
-            console.log(routeCoordinates);
 
             const osrmCoordinates = routeCoordinates.map(coord => {
                 return `${coord[1]},${coord[0]}`;
@@ -63,8 +101,6 @@ findRouteButton.addEventListener('click', function() {
             fetch(`https://router.project-osrm.org/route/v1/driving/${coordinateString}?overview=full&geometries=geojson`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-
                 const roadCoordinates = data.routes[0].geometry.coordinates.map(coord => {
                     return [coord[1], coord[0]];
             });
@@ -72,7 +108,11 @@ findRouteButton.addEventListener('click', function() {
                 map.removeLayer(routeLine);
             }
 
-            routeLine = L.polyline(roadCoordinates).addTo(map);
+            routeLine = L.polyline(roadCoordinates, {
+                color: '#2f80ff',
+                weight: 5,
+                opacity: 1
+            }).addTo(map);
 
             routeMarkers.forEach(marker => {
                 map.removeLayer(marker);

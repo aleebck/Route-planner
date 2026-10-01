@@ -14,60 +14,72 @@
     </head>
     <body>
 
-        <main class="main-container">
-
-            <section class="left-section">
-
-                <header>
+        <main class="app">
+            <header class="top-header">
+                <div>
                     <h1>TEXAS ROUTE PLANNER</h1>
-                    <h5>FIND THE SHORTEST ROUTE BETWEEN TEXAS CITIES</h5>
-                </header>
-                <div class="planner">
-
-                    <div class="location-input">
-                        <label for="from-city">From</label>
-
-                        <select id="from-city">
-                            <option value="">Select a city</option>
-                        </select>
-                    </div>
-
-                    <div class="location-input">
-                        <label for="to-city">To</label>
-
-                        <select id="to-city">
-                            <option value="">Select a city</option>
-                        </select>
-                    </div>
-
-                    <button class="find-route-button">
-                        Find Route
-                    </button>
-
+                    <p>Find the shortest route between Texas cities</p>
                 </div>
 
-                <div class="route-result">
-                    <h3>Route Details</h3>
-
-                    <div class="route-found">
-
-                    </div>
-                    <div class="all-roads">
-
-                    </div>
+                <div class="algorithm-badge">
+                    C++ • DIJKSTRA
                 </div>
+            </header>
 
-            </section>
+            <div class="main-container">
+                <section class="left-section">
+                    
+                    <div class="planner">
+                        <div class="planner-title">
+                            <h2>Plan Your Route</h2>
+                            <p>Select your starting point and destination</p>
+                        </div>
 
-            <section class="right-section">
-                <div id="map"></div>
-            </section>
+                        <div class="location-input">
+                            <label for="from-city">From</label>
+
+                            <select id="from-city">
+                                <option value="">Select a city</option>
+                            </select>
+                        </div>
+
+                        <div class="location-input">
+                            <label for="to-city">To</label>
+
+                            <select id="to-city">
+                                <option value="">Select a city</option>
+                            </select>
+                        </div>
+
+                        <button class="find-route-button">
+                            <span>⌁</span>
+                            <span>Find Route</span>
+                            <span class="button-arrow">→</span>
+                        </button>
+
+                    </div>
+
+                    <div class="route-result">
+                        <h3>Route Details</h3>
+
+                        <div class="all-roads"></div>
+                        <div class="route-found"></div>
+                    </div>
+
+                </section>
+
+                <section class="right-section">
+                    <div id="map"></div>
+                </section>
+
+            </div>
+
         </main>
 
 
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script src="data.js"></script>
         <script src="script.js"></script>
-        
+
     </body>
 </html>
