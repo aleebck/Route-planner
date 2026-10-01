@@ -9,10 +9,11 @@ let routeMarkers = [];
 
 const map = L.map('map').setView([31.0, -99.0], 6);
 L.tileLayer(
-    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg',
     {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
+        maxZoom: 20,
+        attribution:
+            '&copy; Stadia Maps &copy; OpenMapTiles &copy; OpenStreetMap contributors'
     }
 ).addTo(map);
 
