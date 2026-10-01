@@ -4,6 +4,10 @@ An interactive route-planning application that uses a C++ graph implementation a
 
 The project combines a C++ backend with a responsive web interface that visualizes routes on an interactive map.
 
+## Demo
+
+![Texas Route Planner](screenshots/Austin-SanM.png)
+
 ## Features
 
 - Find the shortest path between Texas cities using Dijkstra's algorithm
