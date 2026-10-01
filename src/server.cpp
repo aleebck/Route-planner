@@ -2,6 +2,7 @@
 #include "Graph.h"
 
 #include <iostream>
+#include <cstdlib>
 
 int main()
 {
@@ -65,8 +66,18 @@ int main()
         response.set_content(json, "application/json");
     });
 
-    std::cout <<"Server running at http://localhost:8080\n";
-    server.listen("localhost", 8080);
+    int port = 8080;
+
+    const char* portEnv = std::getenv("PORT");
+
+    if (portEnv != nullptr)
+    {
+        port = std::stoi(portEnv);
+    }
+
+    std::cout << "Server running on port " << port << "\n";
+
+    server.listen("0.0.0.0", port);
 
     return 0;
 }
