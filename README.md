@@ -8,6 +8,10 @@ The project combines a C++ backend with a responsive web interface that visualiz
 
 ![Texas Route Planner](screenshots/Austin-SanM.png)
 
+## Live Demo
+
+[View the live Texas Route Planner](https://aleebck.github.io/Route-planner/)
+
 ## Features
 
 - Find the shortest path between Texas cities using Dijkstra's algorithm
@@ -93,7 +97,7 @@ OSRM is used only to obtain the road geometry for visualization. The shortest-pa
 cpp-route-planner/
 ├── data/
 │   └── roads.txt
-├── frontend/
+├── docs/
 │   ├── data.js
 │   ├── index.html
 │   ├── script.js
