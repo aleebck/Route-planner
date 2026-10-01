@@ -17,7 +17,7 @@ L.tileLayer(
     }
 ).addTo(map);
 
-fetch('http://localhost:8080/locations')
+fetch('https://route-planner-i48u.onrender.com/locations')
     .then(response=> response.json())
     .then(locations=> {
         locations.forEach(city => {
@@ -51,7 +51,7 @@ findRouteButton.addEventListener('click', function() {
         return;
     }
 
-    fetch(`http://localhost:8080/route?start=${encodeURIComponent(start)}&destination=${encodeURIComponent(destination)}`)
+    fetch(`https://route-planner-i48u.onrender.com/route?start=${encodeURIComponent(start)}&destination=${encodeURIComponent(destination)}`)
         .then(response => response.json())
         .then(result => {
             if (!result.path || result.path.length === 0) {
